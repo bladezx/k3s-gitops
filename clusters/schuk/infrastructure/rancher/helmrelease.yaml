@@ -15,10 +15,10 @@ spec:
       version: "*"
   values:
     replicas: 1
-  ingress:
-    extraAnnotations:
-      kubernetes.io/ingress.class: traefik
-    tls:
-      - secretName: rancher-tls
-        hosts:
-          - rancher.local
+    ingress:
+      extraAnnotations:
+        kubernetes.io/ingress.class: traefik
+      tls:
+        - secretName: rancher-tls
+          hosts:
+            - rancher.local
