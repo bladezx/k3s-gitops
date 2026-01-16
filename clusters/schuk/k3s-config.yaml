@@ -1,7 +1,0 @@
-# /etc/rancher/k3s/config.yaml
-write-kubeconfig-mode: "644"     # für einfachen Zugriff
-tls-san:
-  - "192.168.178.88"             # IP deines Servers
-node-name: "schuk-node"
-kube-apiserver-arg:
-  - "enable-admission-plugins=NodeRestriction"
