@@ -4,6 +4,7 @@ metadata:
   name: rancher
   namespace: flux-system
 spec:
+  interval: 10m 
   chart:
     spec:
       chart: rancher
@@ -12,11 +13,12 @@ spec:
         name: rancher-latest
         namespace: flux-system
       version: "*"
-  interval: 10m
   values:
     replicas: 1
-    ingress:
-      tls:
-        source: letsEncrypt
-      extraAnnotations:
-        kubernetes.io/ingress.class: traefik
+  ingress:
+    extraAnnotations:
+      kubernetes.io/ingress.class: traefik
+    tls:
+      - secretName: rancher-tls
+        hosts:
+          - rancher.local
