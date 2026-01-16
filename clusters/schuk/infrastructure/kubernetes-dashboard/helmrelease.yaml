@@ -14,14 +14,10 @@ spec:
         name: kubernetes-dashboard
         namespace: flux-system
   values:
-    service:
-      type: ClusterIP
     ingress:
-      enabled: true
-      annotations:
+      extraAnnotations:
         kubernetes.io/ingress.class: traefik
-      hosts:
-        - host: dashboard.schuk.local
-          paths:
-            - path: /
-              pathType: Prefix
+      tls:
+        - secretName: rancher-tls
+          hosts:
+            - dashboard.schuk.local
