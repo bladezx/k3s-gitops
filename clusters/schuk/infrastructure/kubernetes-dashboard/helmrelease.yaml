@@ -2,18 +2,31 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kubernetes-dashboard
-  namespace: flux-system
+  namespace: kubernetes-dashboard
 spec:
-  interval: 10m
+  interval: 5m
   chart:
     spec:
       chart: kubernetes-dashboard
+      version: "5.0.5" 
       sourceRef:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: flux-system
-      version: "*"
   values:
     service:
-      type: NodePort
-      nodePort: 30080
+      type: ClusterIP
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: letsencrypt
+      hosts:
+        - host: dashboard.schuk.local 
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - dashboard.schuk.local
+          secretName: kubernetes-dashboard-tls
