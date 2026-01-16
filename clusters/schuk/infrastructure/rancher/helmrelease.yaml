@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rancher
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: rancher
+      sourceRef:
+        kind: HelmRepository
+        name: rancher-latest
+        namespace: flux-system
+      version: "*"
+  interval: 10m
+  values:
+    replicas: 1
+    ingress:
+      tls:
+        source: letsEncrypt
+      extraAnnotations:
+        kubernetes.io/ingress.class: traefik

@@ -19,7 +19,7 @@ Steps:
 * copy it to your server and run 
 ```
 sudo mkdir -p /etc/rancher/k3s
-sudo cp clusters/schuk/k3s-config.yaml /etc/rancher/k3s/config.yaml
+sudo cp infra/k3s-config.yaml /etc/rancher/k3s/config.yaml
 ```
 install k3s with
 ```
@@ -48,12 +48,13 @@ flux bootstrap git \
   --branch=main \
   --path=clusters/schuk
 ```
-oder ohne agent
+or without repo agent
 ```
 flux bootstrap git \
   --url=ssh://git@github.com/bladezx/k3s-gitops.git \
   --branch=main \
   --path=clusters/schuk \
   --private-key-file=~/.ssh/{ssh key}
-
 ```
+
+=> now fluxcd is installed
