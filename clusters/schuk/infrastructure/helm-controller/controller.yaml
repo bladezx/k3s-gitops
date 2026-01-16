@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helm-controller
+  namespace: flux-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helm-controller
+  template:
+    metadata:
+      labels:
+        app: helm-controller
+    spec:
+      serviceAccountName: flux
+      containers:
+        - name: manager
+          image: ghcr.io/fluxcd/helm-controller:v0.19.0
+          args:
+            - --metrics-addr=:8080
+            - --enable-leader-election
