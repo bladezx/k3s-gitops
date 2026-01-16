@@ -16,12 +16,12 @@ spec:
   values:
     service:
       type: ClusterIP
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: traefik
-    hosts:
-      - host: dashboard.schuk.local
-        paths:
-          - path: /
-            pathType: Prefix
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      hosts:
+        - host: dashboard.schuk.local
+          paths:
+            - path: /
+              pathType: Prefix
