@@ -4,3 +4,4 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 - rancher-kustomization.yaml
+- kubernetes-dashboard-kustomization.yaml
