@@ -20,19 +20,25 @@ spec:
 
     ingress:
       enabled: true
-      className: traefik
+
+      ingressClassName: traefik
+      useDefaultIngressClass: false
 
       hosts:
         - dashboard.schuk.local
 
-      paths:
-        - /
+      path: /
+      pathType: Prefix
+
+      tls:
+        source: letsEncrypt
+        enabled: true
+        secretName: kubernetes-dashboard-tls
+
+      issuer:
+        scope: cluster
+        name: selfsigned
 
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
-
-      tls:
-        - secretName: kubernetes-dashboard-tls
-          hosts:
-            - dashboard.schuk.local
