@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: rancher-charts
+  name: rancher-latest
   namespace: flux-system
 spec:
+  interval: 1m
   url: https://releases.rancher.com/server-charts/latest
-  interval: 1h

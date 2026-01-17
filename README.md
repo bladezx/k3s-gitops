@@ -23,7 +23,8 @@ sudo cp infra/k3s-config.yaml /etc/rancher/k3s/config.yaml
 ```
 install k3s with
 ```
-curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
+
 ```
 install flux cli
 ```
@@ -54,7 +55,17 @@ flux bootstrap git \
   --url=ssh://git@github.com/bladezx/k3s-gitops.git \
   --branch=main \
   --path=clusters/schuk \
-  --private-key-file=~/.ssh/{ssh key}
+  --private-key-file=/home/bladez/.ssh/{ssh key}
 ```
 
 => now fluxcd is installed
+
+---
+## install infra 
+
+install clusterissuer after cert-manager is available
+```
+kubectl apply -f infra/clusterissuer-selfsigned.yaml
+```
+
+
