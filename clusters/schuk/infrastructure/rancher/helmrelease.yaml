@@ -16,9 +16,10 @@ spec:
   values:
     replicas: 1
     ingress:
-      hosts:
-        - rancher.local
       extraAnnotations:
         kubernetes.io/ingress.class: traefik
       tls:
-        source: none
+        - source: letsEncrypt
+        - secretName: rancher-tls
+          hosts:
+            - rancher.local
