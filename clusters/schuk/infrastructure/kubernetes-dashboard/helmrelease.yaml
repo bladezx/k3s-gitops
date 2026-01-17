@@ -17,17 +17,19 @@ spec:
   values:
     ingress:
       enabled: true
-      className: traefik
-
-      hosts:
-        - dashboard.schuk.local
+      ingressClassName: traefik
 
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
 
+      hosts:
+        - host: dashboard.schuk.local
+          paths:
+            - path: /
+              pathType: Prefix
+
       tls:
         - secretName: kubernetes-dashboard-tls
           hosts:
             - dashboard.schuk.local
-
