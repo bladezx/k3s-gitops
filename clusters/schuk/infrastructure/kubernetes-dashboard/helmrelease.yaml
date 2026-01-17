@@ -14,22 +14,25 @@ spec:
         name: kubernetes-dashboard
         namespace: flux-system
 
-values:
-  ingress:
-    enabled: true
-    ingressClassName: traefik
+  values:
+    service:
+      externalPort: 443
 
-    annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      traefik.ingress.kubernetes.io/router.tls: "true"
+    ingress:
+      enabled: true
+      className: traefik
 
-    hosts:
-      - host: dashboard.schuk.local
-        paths:
-          - path: /
-            pathType: Prefix
+      hosts:
+        - dashboard.schuk.local
 
-    tls:
-      - secretName: kubernetes-dashboard-tls
-        hosts:
-          - dashboard.schuk.local
+      paths:
+        - /
+
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+
+      tls:
+        - secretName: kubernetes-dashboard-tls
+          hosts:
+            - dashboard.schuk.local
