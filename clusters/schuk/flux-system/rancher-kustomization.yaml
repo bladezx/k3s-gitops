@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  path: "../infrastructure/rancher"
+  path: "clusters/schuk/infrastructure/rancher"
   prune: true
   sourceRef:
     kind: GitRepository

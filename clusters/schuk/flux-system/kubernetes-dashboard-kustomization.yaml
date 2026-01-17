@@ -9,7 +9,7 @@ spec:
 
   # Pfad zu den Ressourcen (Namespace + HelmRepository + HelmRelease)
   # relativ zum Git-Repo-Root
-  path: "../infrastructure/kubernetes-dashboard"
+  path: "clusters/schuk/infrastructure/kubernetes-dashboard"
 
   # Alte Ressourcen im Namespace werden gelöscht, wenn sie nicht mehr im Git sind
   prune: true
