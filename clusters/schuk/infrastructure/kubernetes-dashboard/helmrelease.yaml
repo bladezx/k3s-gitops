@@ -17,16 +17,12 @@ spec:
   values:
     ingress:
       enabled: true
-
-      service:
-        name: kubernetes-dashboard-kong-proxy
-        port: 443
+      className: traefik
 
       hosts:
         - dashboard.schuk.local
 
-      extraAnnotations:
-        kubernetes.io/ingress.class: traefik
+      annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
 
@@ -34,3 +30,4 @@ spec:
         - secretName: kubernetes-dashboard-tls
           hosts:
             - dashboard.schuk.local
+

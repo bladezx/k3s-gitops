@@ -4,15 +4,15 @@ metadata:
   name: rancher
   namespace: cattle-system
 spec:
-  interval: 5m 
+  interval: 1m 
   chart:
     spec:
       chart: rancher
+      version: "*"
       sourceRef:
         kind: HelmRepository
         name: rancher-latest
         namespace: flux-system
-      version: "*"
   values:
     replicas: 1
     ingress:
