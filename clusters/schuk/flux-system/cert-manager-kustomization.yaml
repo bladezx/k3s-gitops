@@ -4,8 +4,8 @@ metadata:
   name: cert-manager
   namespace: flux-system
 spec:
-  interval: 10m
-  path: "./clusters/my-cluster/cert-manager"
+  interval: 1m
+  path: "../infrastructure/cert-manager"
   prune: true
   sourceRef:
     kind: GitRepository

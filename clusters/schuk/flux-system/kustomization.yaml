@@ -5,3 +5,4 @@ resources:
 - gotk-sync.yaml
 - rancher-kustomization.yaml
 - kubernetes-dashboard-kustomization.yaml
+- cert-manager-kustomization.yaml
