@@ -19,7 +19,7 @@ spec:
       extraAnnotations:
         kubernetes.io/ingress.class: traefik
       tls:
-        source: letsEncrypt      # ← kein "-" davor!
+        source: none      # ← kein "-" davor!
         secretName: rancher-tls  # optional, wenn du einen eigenen Secret-Namen willst
         hosts:
           - rancher.local

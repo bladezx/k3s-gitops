@@ -31,7 +31,7 @@ spec:
       pathType: Prefix
 
       tls:
-        source: letsEncrypt
+        source: secret
         enabled: true
         secretName: kubernetes-dashboard-tls
 
