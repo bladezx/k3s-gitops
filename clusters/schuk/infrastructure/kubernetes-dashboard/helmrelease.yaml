@@ -8,16 +8,29 @@ spec:
   chart:
     spec:
       chart: kubernetes-dashboard
-      version: "7.14.0" 
+      version: "7.14.0"
       sourceRef:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: flux-system
+
   values:
     ingress:
+      enabled: true
+
+      service:
+        name: kubernetes-dashboard-kong-proxy
+        port: 443
+
+      hosts:
+        - dashboard.schuk.local
+
       extraAnnotations:
         kubernetes.io/ingress.class: traefik
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+
       tls:
-        - secretName: rancher-tls
+        - secretName: kubernetes-dashboard-tls
           hosts:
             - dashboard.schuk.local
