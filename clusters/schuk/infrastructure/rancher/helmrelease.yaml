@@ -16,10 +16,9 @@ spec:
   values:
     replicas: 1
     ingress:
+      hosts:
+        - rancher.local
       extraAnnotations:
         kubernetes.io/ingress.class: traefik
       tls:
-        source: none      # ← kein "-" davor!
-        secretName: rancher-tls  # optional, wenn du einen eigenen Secret-Namen willst
-        hosts:
-          - rancher.local
+        source: none
