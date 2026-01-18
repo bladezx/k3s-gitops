@@ -42,5 +42,6 @@ spec:
     supervisor:
       enabled: true
     tls:
-      source: secret
-      secretName: tls-homeassistant
+      - secretName: tls-homeassistant
+        hosts:
+          - homeassistant.local
