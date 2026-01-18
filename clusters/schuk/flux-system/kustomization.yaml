@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
-- rancher-kustomization.yaml
-- cert-manager-kustomization.yaml
+- kustomization-rancher.yaml
+- kustomization-cert-manager.yaml
+- kustomization-home-assistant.yaml
