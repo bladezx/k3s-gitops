@@ -13,8 +13,7 @@ spec:
         kind: HelmRepository
         name: rancher-latest
         namespace: flux-system
-  dependsOn:
-    - name: cert-manager
+ 
   values:
     enabled: true
     replicas: 1
