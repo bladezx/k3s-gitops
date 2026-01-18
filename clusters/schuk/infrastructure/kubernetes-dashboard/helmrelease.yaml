@@ -23,6 +23,6 @@ spec:
         kubernetes.io/ingress.class: traefik
       tls:
         - source: secret
-        - secretName: rancher-tls
+        - secretName: kubernetes-dashboard-tls
           hosts:
             - dashboard.schuk.local
