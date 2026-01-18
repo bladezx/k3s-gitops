@@ -13,6 +13,8 @@ spec:
         kind: HelmRepository
         name: rancher-latest
         namespace: flux-system
+  dependsOn:
+    - name: cert-manager
   values:
     enabled: true
     replicas: 1
@@ -30,5 +32,5 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - source: secret
-        - secretName: tls-rancher
+        source: secret
+        secretName: tls-rancher
