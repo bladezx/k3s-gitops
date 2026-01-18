@@ -9,4 +9,4 @@ spec:
     name: selfsigned
     kind: ClusterIssuer
   dnsNames:
-    - homeassistant.schuk.local
+    - homeassistant.local

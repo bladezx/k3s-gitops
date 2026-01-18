@@ -4,5 +4,5 @@ metadata:
   name: home-assistant
   namespace: flux-system
 spec:
-  interval: 1m
+  interval: 1h
   url:  http://pajikos.github.io/home-assistant-helm-chart/

@@ -25,7 +25,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
       hosts:
-      - host: homeassistant.schuk.local
+      - host: homeassistant.local
         paths:
           - path: /
             pathType: ImplementationSpecific

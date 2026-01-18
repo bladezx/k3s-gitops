@@ -26,7 +26,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
       hosts:
-        - host: rancher.schuk.local
+        - host: rancher.local
           paths:
             - path: /
               pathType: Prefix
