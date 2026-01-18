@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: home-assistant
+      version: 
       sourceRef:
         kind: HelmRepository
         name: home-assistant
@@ -22,9 +23,10 @@ spec:
       enabled: true
       className: traefik
       hosts:
-        - host: homeassistant.schuk.local
-          paths:
-            - /
+      - host: homeassistant.schuk.local
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
 
     service:
       type: ClusterIP
