@@ -2,7 +2,7 @@
 
 ## Install Ubuntu server on macbook
 
-To install k3s, you first need to set up an Ubuntu Server.
+To install k3s for a home server, you first need to set up an Ubuntu Server.
 In my case, the setup runs on an old MacBook Pro 13" (2017).
 
 Steps:
