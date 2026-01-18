@@ -25,17 +25,13 @@ spec:
       ingressClassName: traefik
       useDefaultIngressClass: false
 
-      # Host
       hosts:
-        - dashboard.schuk.local
-
-      # Path handling
-      path: /
-      pathType: Prefix
-
-      # TLS
+        - host: dashboard-schuk.local
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
-        enabled: true
+        source: secret
         secretName: kubernetes-dashboard-tls
 
       # cert-manager Issuer
