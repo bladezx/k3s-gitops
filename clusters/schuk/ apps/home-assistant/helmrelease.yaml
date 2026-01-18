@@ -1,0 +1,34 @@
+# helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: home-assistant
+      sourceRef:
+        kind: HelmRepository
+        name: home-assistant
+        namespace: flux-system
+  values:
+    persistence:
+      enabled: true
+      storageClass: local-path   # k3s default
+      size: 10Gi
+
+    ingress:
+      enabled: true
+      className: traefik
+      hosts:
+        - host: homeassistant.schuk.local
+          paths:
+            - /
+
+    service:
+      type: ClusterIP
+
+    supervisor:
+      enabled: true

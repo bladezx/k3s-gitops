@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: rancher
-      version: "2.13.1"
+      version: "2.1.7"
       sourceRef:
         kind: HelmRepository
         name: rancher-latest
@@ -26,7 +26,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
       hosts:
-        - host: rancher.local
+        - host: rancher.schuk.local
           paths:
             - path: /
               pathType: Prefix
