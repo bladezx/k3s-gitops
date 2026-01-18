@@ -19,10 +19,31 @@ spec:
       externalPort: 443
 
     ingress:
-      extraAnnotations:
-        kubernetes.io/ingress.class: traefik
+      enabled: true
+
+      # Ingress Class (Traefik in k3s)
+      ingressClassName: traefik
+      useDefaultIngressClass: false
+
+      # Host
+      hosts:
+        - dashboard.schuk.local
+
+      # Path handling
+      path: /
+      pathType: Prefix
+
+      # TLS
       tls:
-        - source: secret
-        - secretName: kubernetes-dashboard-tls
-          hosts:
-            - dashboard.schuk.local
+        enabled: true
+        secretName: kubernetes-dashboard-tls
+
+      # cert-manager Issuer
+      issuer:
+        scope: cluster      # -> cert-manager.io/cluster-issuer
+        name: selfsigned    # muss existieren
+
+      # Traefik annotations
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
