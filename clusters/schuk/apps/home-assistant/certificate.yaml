@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: tls-homeassistant
-  namespace: cattle-system
+  namespace: home-assistant
 spec:
   secretName: tls-homeassistant
   issuerRef:
