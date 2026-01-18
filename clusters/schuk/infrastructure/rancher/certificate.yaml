@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: tls-homeassistant
+  name: tls-rancher-ingress
   namespace: cattle-system
 spec:
-  secretName: tls-homeassistant
+  secretName: tls-rancher-ingress
   issuerRef:
     name: selfsigned
     kind: ClusterIssuer
   dnsNames:
-    - homeassistant.schuk.local
+    - rancher.local
