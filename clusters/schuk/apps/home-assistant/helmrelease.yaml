@@ -15,10 +15,24 @@ spec:
         namespace: flux-system
   values:
     configuration:
-      enabled: true
-      use_x_forwarded_for: true
-      trusted_proxies:
-        - 10.0.0.0/8
+      enabled: false
+
+    templateConfig: |-
+      # Loads default set of integrations. Do not remove.
+      default_config:
+
+      http:
+        use_x_forwarded_for: true
+        trusted_proxies:
+          - 10.0.0.0/8
+
+      frontend:
+        themes: !include_dir_merge_named themes
+
+      automation: !include automations.yaml
+      script: !include scripts.yaml
+      scene: !include scenes.yaml
+
     persistence:
       enabled: true
       storageClass: local-path
