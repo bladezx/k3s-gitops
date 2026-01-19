@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: home-assistant
-      version: 
+      version: 0.3.40
       sourceRef:
         kind: HelmRepository
         name: home-assistant
@@ -27,21 +27,13 @@ spec:
 
     ingress:
       enabled: true
-      className: traefik
-      annotations:
-        kubernetes.io/ingress.class: traefik
+      ingressClassName: traefik
       hosts:
-      - host: homeassistant.local
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-
-    service:
-      type: ClusterIP
-
-    supervisor:
-      enabled: true
-    tls:
-      - secretName: tls-homeassistant
-        hosts:
-          - homeassistant.local
+        - host: homeassistant.local
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: tls-homeassistant
+          hosts:
+            - homeassistant.local
