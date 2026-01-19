@@ -19,7 +19,7 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  interval: 5m
+  interval: 10m0s
   path: ./clusters/schuk
   prune: true
   sourceRef:
