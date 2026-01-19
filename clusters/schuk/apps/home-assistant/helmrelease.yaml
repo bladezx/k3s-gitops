@@ -27,12 +27,13 @@ spec:
 
     ingress:
       enabled: true
-      ingressClassName: traefik
+      annotations:
+        kubernetes.io/ingress.class: traefik
       hosts:
         - host: homeassistant.local
           paths:
             - path: /
-              pathType: Prefix
+              pathType: ImplementationSpecific
       tls:
         - secretName: tls-homeassistant
           hosts:
