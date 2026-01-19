@@ -22,7 +22,7 @@ spec:
           - 10.42.0.0/16
     persistence:
       enabled: true
-      storageClass: local-path   # k3s default
+      storageClass: local-path
       size: 10Gi
 
     ingress:
@@ -37,3 +37,4 @@ spec:
         - secretName: tls-homeassistant
           hosts:
             - homeassistant.local
+            
