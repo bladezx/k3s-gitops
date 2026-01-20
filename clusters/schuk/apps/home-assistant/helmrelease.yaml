@@ -16,8 +16,8 @@ spec:
   values:
     configuration:
       enabled: false
-
-    templateConfig: |-
+     
+    templateConfig: |- # could happen, that this is not created edit /config/configuration.yaml and add http node
       # Loads default set of integrations. Do not remove.
       default_config:
 
