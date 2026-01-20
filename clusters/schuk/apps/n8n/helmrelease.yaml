@@ -7,8 +7,7 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: community-charts/n8n
-      version: 1.0.0
+      chart: n8n
       sourceRef:
         kind: HelmRepository
         name: n8n
