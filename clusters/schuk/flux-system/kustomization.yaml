@@ -6,3 +6,4 @@ resources:
 - kustomization-rancher.yaml
 - kustomization-cert-manager.yaml
 - kustomization-home-assistant.yaml
+- kustomization-n8n.yaml
