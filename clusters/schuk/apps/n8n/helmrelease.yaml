@@ -1,10 +1,10 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: n8n
   namespace: n8n
 spec:
-  interval: 1m
+  interval: 5m
   chart:
     spec:
       chart: n8n
@@ -12,26 +12,18 @@ spec:
         kind: HelmRepository
         name: n8n
         namespace: flux-system
-
   values:
-    n8n:
-      host: n8n.local
-      protocol: https
-      port: 5678
-
-    persistence:
-      enabled: true
-      storageClass: local-path
-      size: 5Gi
-
     ingress:
       enabled: true
-      className: traefik
       hosts:
         - host: n8n.local
           paths:
-            - /
+            - path: /
+              pathType: ImplementationSpecific
       tls:
         - secretName: tls-n8n
           hosts:
             - n8n.local
+    persistence:
+      enabled: true
+      size: 1Gi
