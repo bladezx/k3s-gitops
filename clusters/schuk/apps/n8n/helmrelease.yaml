@@ -32,6 +32,3 @@ spec:
           hosts:
             - n8n.local
 
-    persistence:
-      enabled: true
-      size: 1Gi
