@@ -6,6 +6,7 @@ metadata:
 spec:
   interval: 5m
   timeout: 10m
+
   chart:
     spec:
       chart: airflow
@@ -16,34 +17,57 @@ spec:
         namespace: flux-system
 
   values:
-    # --- Executor ---
+    # --------------------
+    # Executor
+    # --------------------
     executor: LocalExecutor
 
-    # --- PostgreSQL komplett deaktivieren ---
+    # --------------------
+    # PostgreSQL AUS
+    # --------------------
     postgresql:
       enabled: false
 
-    # --- SQLite verwenden ---
+    # --------------------
+    # MySQL EIN (Bitnami)
+    # --------------------
+    mysql:
+      enabled: true
+      auth:
+        existingSecret: airflow-mysql
+        usernameKey: mysql-user
+        passwordKey: mysql-password
+        databaseKey: mysql-database
+        rootPasswordKey: mysql-root-password
+
+    # --------------------
+    # Airflow DB Connection
+    # --------------------
     data:
       metadataConnection:
-        protocol: sqlite
-        db: /opt/airflow/airflow.db
+        protocol: mysql
+        host: mysql-host
+        port: 3306
+        db: mysql-database
+        user: mysql-user
+        passwordSecret: airflow-mysql
+        passwordSecretKey: mysql-password
 
-    # --- Webserver ---
+    # --------------------
+    # Core Components
+    # --------------------
     webserver:
       enabled: true
-      service:
-        type: ClusterIP
 
-    # --- Scheduler ---
     scheduler:
       enabled: true
 
-    # --- API Server (Airflow 2.7+) ---
     apiServer:
       enabled: true
 
-    # --- Persistence für SQLite ---
+    # --------------------
+    # Persistence
+    # --------------------
     dags:
       persistence:
         enabled: true
@@ -54,6 +78,8 @@ spec:
         enabled: true
         size: 1Gi
 
-    # --- Ingress (optional, kannst du später aktivieren) ---
+    # --------------------
+    # Ingress (optional)
+    # --------------------
     ingress:
       enabled: false
