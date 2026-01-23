@@ -7,3 +7,4 @@ resources:
 - kustomization-cert-manager.yaml
 - kustomization-home-assistant.yaml
 - kustomization-n8n.yaml
+- kustomization-airflow.yaml
