@@ -1,37 +1,59 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: airflow
   namespace: airflow
-
 spec:
   interval: 5m
+  timeout: 10m
   chart:
     spec:
       chart: airflow
+      version: 1.18.0
       sourceRef:
         kind: HelmRepository
         name: apache-airflow
         namespace: flux-system
 
   values:
-    executor: KubernetesExecutor
+    # --- Executor ---
+    executor: LocalExecutor
 
-    airflow:
-      image:
-        repository: apache/airflow
-        tag: 2.8.1
+    # --- PostgreSQL komplett deaktivieren ---
+    postgresql:
+      enabled: false
 
+    # --- SQLite verwenden ---
+    data:
+      metadataConnection:
+        protocol: sqlite
+        db: /opt/airflow/airflow.db
+
+    # --- Webserver ---
     webserver:
+      enabled: true
       service:
         type: ClusterIP
 
+    # --- Scheduler ---
     scheduler:
-      replicas: 1
-
-    triggerer:
       enabled: true
 
+    # --- API Server (Airflow 2.7+) ---
+    apiServer:
+      enabled: true
+
+    # --- Persistence für SQLite ---
     dags:
       persistence:
-        enabled: false
+        enabled: true
+        size: 1Gi
+
+    logs:
+      persistence:
+        enabled: true
+        size: 1Gi
+
+    # --- Ingress (optional, kannst du später aktivieren) ---
+    ingress:
+      enabled: false
