@@ -23,35 +23,22 @@ spec:
     executor: LocalExecutor
 
     # --------------------
-    # PostgreSQL AUS
+    # interne Datenbanken AUS
     # --------------------
     postgresql:
       enabled: false
-
-    # --------------------
-    # MySQL EIN (Bitnami)
-    # --------------------
     mysql:
-      enabled: true
-      auth:
-        existingSecret: airflow-mysql
-        usernameKey: mysql-user
-        passwordKey: mysql-password
-        databaseKey: mysql-database
-        rootPasswordKey: mysql-root-password
+      enabled: false
 
     # --------------------
-    # Airflow DB Connection
+    # Externe DB via ENV (BEST PRACTICE)
     # --------------------
-    data:
-      metadataConnection:
-        protocol: mysql
-        host: mysql-host
-        port: 3306
-        db: mysql-database
-        user: mysql-user
-        passwordSecret: airflow-mysql
-        passwordSecretKey: mysql-password
+    extraEnv:
+      - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
+        valueFrom:
+          secretKeyRef:
+            name: airflow-db
+            key: sql_alchemy_conn
 
     # --------------------
     # Core Components
@@ -62,7 +49,7 @@ spec:
     scheduler:
       enabled: true
 
-    apiServer:
+    triggerer:
       enabled: true
 
     # --------------------
