@@ -5,8 +5,7 @@ metadata:
   namespace: airflow
 spec:
   interval: 5m
-  timeout: 10m
-
+  timeout: 15m
   chart:
     spec:
       chart: airflow
@@ -29,44 +28,52 @@ spec:
       enabled: false
 
     # --------------------
-    # MySQL AUS (nur externe Verbindung)
+    # MySQL AUS (extern)
     # --------------------
     mysql:
       enabled: false
 
     # --------------------
-    # Airflow DB Connection via Secret
+    # Airflow DB Connection (extern)
     # --------------------
     airflow:
       envFrom:
         - secretRef:
             name: airflow-db
+      extraPipPackages:
+        - pymysql  # für mysql+pymysql
 
     # --------------------
     # Core Components
     # --------------------
     webserver:
       enabled: true
-
     scheduler:
       enabled: true
-
+    apiServer:
+      enabled: true
     triggerer:
       enabled: true
 
     # --------------------
-    # Persistence deaktiviert
+    # Persistence deaktiviert (da extern)
     # --------------------
     dags:
       persistence:
         enabled: false
-
     logs:
       persistence:
         enabled: false
 
     # --------------------
-    # Ingress (optional, hier deaktiviert)
+    # Ingress optional
     # --------------------
     ingress:
       enabled: false
+
+    # --------------------
+    # Init-Migration (automatisch beim Start)
+    # --------------------
+    init:
+      extraCommand: >
+        airflow db upgrade
