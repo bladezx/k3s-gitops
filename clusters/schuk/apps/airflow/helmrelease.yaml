@@ -59,14 +59,14 @@ spec:
       persistence:
         enabled: true
         size: 1Gi
-        accessMode:
+        accessModes:
           - ReadWriteOnce
 
     logs:
       persistence:
         enabled: true
         size: 1Gi
-        accessMode: 
+        accessModes: 
           - ReadWriteOnce
 
     # --------------------
