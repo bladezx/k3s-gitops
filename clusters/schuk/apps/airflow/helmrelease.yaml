@@ -57,8 +57,6 @@ spec:
       enabled: true
     scheduler:
       enabled: true
-    apiServer:
-      enabled: true
     triggerer:
       enabled: true
 
