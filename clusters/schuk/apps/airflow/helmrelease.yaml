@@ -23,22 +23,24 @@ spec:
     executor: LocalExecutor
 
     # --------------------
-    # interne Datenbanken AUS
+    # PostgreSQL AUS
     # --------------------
     postgresql:
       enabled: false
+
+    # --------------------
+    # MySQL AUS (nur externe Verbindung)
+    # --------------------
     mysql:
       enabled: false
 
     # --------------------
-    # Externe DB via ENV (BEST PRACTICE)
+    # Airflow DB Connection via Secret
     # --------------------
-    extraEnv: |
-      - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
-        valueFrom:
-          secretKeyRef:
+    airflow:
+      envFrom:
+        - secretRef:
             name: airflow-db
-            key: sql_alchemy_conn
 
     # --------------------
     # Core Components
@@ -53,7 +55,7 @@ spec:
       enabled: true
 
     # --------------------
-    # Persistence
+    # Persistence deaktiviert
     # --------------------
     dags:
       persistence:
@@ -64,7 +66,7 @@ spec:
         enabled: false
 
     # --------------------
-    # Ingress (optional)
+    # Ingress (optional, hier deaktiviert)
     # --------------------
     ingress:
       enabled: false
