@@ -33,7 +33,7 @@ spec:
     # --------------------
     # Externe DB via ENV (BEST PRACTICE)
     # --------------------
-    extraEnv:
+    extraEnv: |
       - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
         valueFrom:
           secretKeyRef:
