@@ -43,6 +43,13 @@ spec:
       extraPipPackages:
         - pymysql  # für mysql+pymysql
 
+    migrateDatabaseJob:
+      enabled: true
+
+    waitForMigrations:
+      enabled: false
+
+
     # --------------------
     # Core Components
     # --------------------
