@@ -59,11 +59,13 @@ spec:
       persistence:
         enabled: true
         size: 1Gi
+        accessMode: ReadWriteOnce
 
     logs:
       persistence:
         enabled: true
         size: 1Gi
+        accessMode: ReadWriteOnce
 
     # --------------------
     # Ingress (optional)
