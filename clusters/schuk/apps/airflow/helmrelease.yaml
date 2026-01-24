@@ -57,17 +57,11 @@ spec:
     # --------------------
     dags:
       persistence:
-        enabled: true
-        size: 1Gi
-        accessModes:
-          - ReadWriteOnce
+        enabled: false
 
     logs:
       persistence:
-        enabled: true
-        size: 1Gi
-        accessModes: 
-          - ReadWriteOnce
+        enabled: false
 
     # --------------------
     # Ingress (optional)
