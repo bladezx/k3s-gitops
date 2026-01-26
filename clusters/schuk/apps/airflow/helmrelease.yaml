@@ -1,84 +1,64 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: airflow
   namespace: airflow
 spec:
   interval: 5m
-  timeout: 15m
   chart:
     spec:
       chart: airflow
-      version: 1.18.0
+      version: 1.15.0
       sourceRef:
         kind: HelmRepository
         name: apache-airflow
         namespace: flux-system
 
   values:
-    # --------------------
-    # Executor
-    # --------------------
-    executor: LocalExecutor
+    executor: CeleryExecutor
 
-    # --------------------
-    # PostgreSQL AUS
-    # --------------------
+    # ❌ Postgres aus
     postgresql:
       enabled: false
 
-    # --------------------
-    # MySQL AUS (extern)
-    # --------------------
-    mysql:
-      enabled: false
+    # ✅ MySQL Metadata DB
+    metadataConnection:
+      protocol: mysql
+      host: mysql.airflow.svc.cluster.local
+      port: 3306
+      db: airflow
+      user: airflow
+      pass: airflow
 
-    # --------------------
-    # Airflow DB Connection (extern)
-    # --------------------
-    airflow:
-      envFrom:
-        - secretRef:
-            name: airflow-db
-      extraPipPackages:
-        - pymysql  # für mysql+pymysql
+    # 🔐 Alternativ/zusätzlich per Secret (empfohlen)
+    metadataSecretName: airflow-mysql
+
+    env:
+      - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
+        valueFrom:
+          secretKeyRef:
+            name: airflow-mysql
+            key: connection
+
+    images:
+      airflow:
+        repository: apache/airflow
+        tag: "3.0.2"
+
+    webserver:
+      enabled: true
+      replicas: 1
+
+    scheduler:
+      enabled: true
+      replicas: 1
+
+    workers:
+      replicas: 1
+
+    triggerer:
+      enabled: true
+      replicas: 1
 
     migrateDatabaseJob:
       enabled: true
-
-    waitForMigrations:
-      enabled: false
-
-
-    # --------------------
-    # Core Components
-    # --------------------
-    webserver:
-      enabled: true
-    scheduler:
-      enabled: true
-    triggerer:
-      enabled: true
-
-    # --------------------
-    # Persistence deaktiviert (da extern)
-    # --------------------
-    dags:
-      persistence:
-        enabled: false
-    logs:
-      persistence:
-        enabled: false
-
-    # --------------------
-    # Ingress optional
-    # --------------------
-    ingress:
-      enabled: false
-
-    # --------------------
-    # Init-Migration (automatisch beim Start)
-    # --------------------
-    init:
-      extraCommand: >
-        airflow db upgrade
