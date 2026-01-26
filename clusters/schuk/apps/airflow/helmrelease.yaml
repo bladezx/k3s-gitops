@@ -33,13 +33,6 @@ spec:
     # 🔐 Alternativ/zusätzlich per Secret (empfohlen)
     metadataSecretName: airflow-mysql
 
-    env:
-      - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
-        valueFrom:
-          secretKeyRef:
-            name: airflow-mysql
-            key: connection
-
     images:
       airflow:
         repository: apache/airflow
