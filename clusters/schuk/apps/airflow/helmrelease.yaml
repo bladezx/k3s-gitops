@@ -36,7 +36,7 @@ spec:
     images:
       airflow:
         repository: apache/airflow
-        tag: "3.0.2"
+        tag: "2.7.2"
 
     webserver:
       enabled: true
