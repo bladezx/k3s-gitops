@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: airflow
-      version: 1.15.0
+      version: 1.18.0
       sourceRef:
         kind: HelmRepository
         name: apache-airflow
@@ -30,12 +30,11 @@ spec:
 
     data:
       # 🔐 Alternativ/zusätzlich per Secret (empfohlen)
-      metadataSecretName: airflow-mysql
+      metadataSecretName: airflow-metadata
 
     images:
       airflow:
         repository: apache/airflow
-        tag: "2.7.2"
 
     webserver:
       enabled: true
@@ -53,4 +52,4 @@ spec:
       replicas: 1
 
     migrateDatabaseJob:
-      enabled: true
+      enabled: false
