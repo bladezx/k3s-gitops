@@ -21,6 +21,13 @@ spec:
     postgresql:
       enabled: false
 
+    createUserJob:
+      useHelmHooks: false
+      applyCustomEnv: false
+    migrateDatabaseJob:
+      useHelmHooks: false
+      applyCustomEnv: false
+
     data:
       # 🔐 Alternativ/zusätzlich per Secret (empfohlen)
       metadataSecretName: airflow-mysql
