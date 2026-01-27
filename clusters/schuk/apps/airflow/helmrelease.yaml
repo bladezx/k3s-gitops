@@ -1,4 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: airflow
@@ -50,6 +50,3 @@ spec:
     triggerer:
       enabled: true
       replicas: 1
-
-    migrateDatabaseJob:
-      enabled: false
