@@ -22,16 +22,6 @@ spec:
       enabled: false
 
     data:
-      # ✅ MySQL Metadata DB
-      metadataConnection:
-        protocol: mysql
-        host: mysql.airflow.svc.cluster.local
-        port: 3306
-        db: airflow
-        user: airflow
-        pass: airflow
-        sslmode: disable
-  
       # 🔐 Alternativ/zusätzlich per Secret (empfohlen)
       metadataSecretName: airflow-mysql
 
