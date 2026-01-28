@@ -59,9 +59,8 @@ spec:
           kubernetes.io/ingress.class: traefik
         hosts:
         - name: airflow.local
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
+          path: /
+          pathType: ImplementationSpecific
         tls:
           enabled: true
           secretName: "tls-airflow"
@@ -72,8 +71,6 @@ spec:
           kubernetes.io/ingress.class: traefik
         hosts:
         - name: airflow.local
-          path: /flower
-          pathType: ImplementationSpecific
         tls:
           enabled: true
           secretName: "tls-airflow"
