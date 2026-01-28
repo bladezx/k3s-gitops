@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  connection: mysql+pymysql://USERNAME:PW@HOST.COM:PORT/DATABASE_NAME
+kind: Secret
+metadata:
+  labels:
+    chart: airflow
+    release: airflow
+    tier: airflow
+  name: airflow-metadata
+  namespace: airflow

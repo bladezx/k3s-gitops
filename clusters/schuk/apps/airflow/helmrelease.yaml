@@ -17,7 +17,7 @@ spec:
   values:
     executor: CeleryExecutor
 
-    # ❌ Postgres aus
+    # disable postgres
     postgresql:
       enabled: false
 
@@ -29,7 +29,7 @@ spec:
       applyCustomEnv: false
 
     data:
-      # 🔐 Alternativ/zusätzlich per Secret (empfohlen)
+      # need to create airflow-metadata secret first | you can find the template infra/airflow-metadata.yaml
       metadataSecretName: airflow-metadata
 
     images:
@@ -50,3 +50,19 @@ spec:
     triggerer:
       enabled: true
       replicas: 1
+    ingress:
+      enabled: true
+      web:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          kubernetes.io/ingress.class: traefik
+        path: /
+        pathType: ImplementationSpecific
+        host: "airflow.local"
+        tls:
+          secretName: "tls-airflow"
+      flower:
+        path: "/flower"
+        pathType: ImplementationSpecific
+        host: "airflow.local"
