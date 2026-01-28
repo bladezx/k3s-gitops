@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
   connection: mysql+pymysql://USERNAME:PW@HOST.COM:PORT/DATABASE_NAME
+  metadata: '{"users":[{"username":"admin","password":"DEIN_PASS"}]}'
 kind: Secret
 metadata:
   labels:

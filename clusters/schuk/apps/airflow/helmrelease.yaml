@@ -22,7 +22,6 @@ spec:
       enabled: false
 
     createUserJob:
-      enabled: false ### disabled for the first run
       useHelmHooks: false
       applyCustomEnv: false
     migrateDatabaseJob:
