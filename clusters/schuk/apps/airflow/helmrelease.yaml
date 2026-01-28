@@ -50,6 +50,7 @@ spec:
     triggerer:
       enabled: true
       replicas: 1
+  
     ingress:
       enabled: true
       web:
@@ -72,3 +73,11 @@ spec:
         tls:
           enabled: true
           secretName: "tls-airflow"
+
+    dags:
+      gitSync:
+        enabled: true
+        repo: https://github.com/bladezx/k3s-airflow-dags.git
+        branch: main
+        subPath: dags
+        wait: 60
