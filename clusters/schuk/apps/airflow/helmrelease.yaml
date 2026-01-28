@@ -58,9 +58,7 @@ spec:
         annotations:
           kubernetes.io/ingress.class: traefik
         hosts:
-        - name: airflow.local
-          path: /
-          pathType: ImplementationSpecific
+        - airflow.local
         tls:
           enabled: true
           secretName: "tls-airflow"
@@ -70,7 +68,7 @@ spec:
         annotations:
           kubernetes.io/ingress.class: traefik
         hosts:
-        - name: airflow.local
+        - airflow.local
         tls:
           enabled: true
           secretName: "tls-airflow"
