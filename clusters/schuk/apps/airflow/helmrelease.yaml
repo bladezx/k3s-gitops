@@ -81,3 +81,8 @@ spec:
         branch: main
         subPath: dags
         wait: 60
+
+    extraPipPackages:
+    - kubernetes
+    - pandas
+    - requests
