@@ -1,6 +1,3 @@
-[submodule "airflow-dags"]
-	path = airflow-dags
-	url = ssh://git@github.com/bladezx/k3s-airflow-dags.git
 [submodule "clusters/schuk/airflow-dags"]
 	path = clusters/schuk/airflow-dags
 	url = ssh://git@github.com/bladezx/k3s-airflow-dags.git
