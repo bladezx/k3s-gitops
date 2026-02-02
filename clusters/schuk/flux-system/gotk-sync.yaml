@@ -12,6 +12,8 @@ spec:
   secretRef:
     name: flux-system
   url: ssh://git@github.com/bladezx/k3s-gitops.git
+  gitImplementation: libgit2
+  recurseSubmodules: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
