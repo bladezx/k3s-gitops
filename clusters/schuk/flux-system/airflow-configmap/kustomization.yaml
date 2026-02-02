@@ -4,7 +4,7 @@ kind: Kustomization
 configMapGenerator:
   - name: php-scripts
     files:
-      - ../airflow-dags/php-scripts/*.php
+      - ../airflow-dags/php-scripts/my_job.php
 
 generatorOptions:
   disableNameSuffixHash: true
