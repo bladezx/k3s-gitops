@@ -1,0 +1,3 @@
+[submodule "airflow-dags"]
+	path = airflow-dags
+	url = https://github.com/bladezx/k3s-airflow-dags.git
