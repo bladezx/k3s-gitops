@@ -48,6 +48,7 @@ flux bootstrap git \
   --url=ssh://git@github.com/bladezx/k3s-gitops.git \
   --branch=main \
   --path=clusters/schuk
+  --recurse-submodules
 ```
 or without repo agent
 ```
@@ -56,6 +57,7 @@ flux bootstrap git \
   --branch=main \
   --path=clusters/schuk \
   --private-key-file=/home/bladez/.ssh/{ssh key}
+  --recurse-submodules
 ```
 
 => now fluxcd is installed
