@@ -8,4 +8,4 @@ resources:
 - kustomization-home-assistant.yaml
 - kustomization-n8n.yaml
 - kustomization-airflow.yaml
-- ./airflow-configmap
+- kustomization-airflow-dag.yaml
