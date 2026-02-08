@@ -46,15 +46,6 @@ spec:
 
     workers:
       replicas: 1
-      extraVolumes:
-        - name: php-scripts
-          configMap:
-            name: php-scripts
-
-      extraVolumeMounts:
-        - name: php-scripts
-          mountPath: /opt/airflow/php-scripts
-          readOnly: true
 
     triggerer:
       enabled: true
@@ -95,3 +86,4 @@ spec:
     - kubernetes
     - pandas
     - requests
+    - apache-airflow-providers-cncf-kubernetes
