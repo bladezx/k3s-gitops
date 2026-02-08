@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  url: git@github.com:bladezx/k3s-airflow-dags.git
+  url: ssh://git@github.com/bladezx/k3s-airflow-dags.git
   ref:
     branch: main
   secretRef:
